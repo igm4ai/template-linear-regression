@@ -15,6 +15,6 @@ igm_project(
     scripts={
         None: cpy('main.py'),
         'info': info,
-        'install': cpip('install', 'requirements.txt'),
+        'install': cpip('install', '-r', 'requirements.txt'),
     }
 )
