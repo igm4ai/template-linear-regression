@@ -46,9 +46,13 @@ if __name__ == "__main__":
     fk, fb = model.linear.weight.reshape(()), model.linear.bias.reshape(())
     print(f'The fitted function is: y = {fk:.3f}x + {fb:.3f}')
 
-    predict = model(x)
+    pred_y = model(x).data
+{% if sys.cuda %}
+    x, y, pred_y = x.cpu(), y.cpu(), pred_y.cpu()
+{% endif %}
+
     plt.plot(x.numpy(), y.numpy(), 'ro', label='Original Data')
-    plt.plot(x.numpy(), predict.data.numpy(), label='Fitting Line')
+    plt.plot(x.numpy(), pred_y.numpy(), label='Fitting Line')
     plt.xlabel('X-Value')
     plt.ylabel('Y-Value')
     plt.title('Fitting of linear function $y = {{user.k}}x + {{user.b}}$')
