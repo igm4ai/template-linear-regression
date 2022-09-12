@@ -1,4 +1,4 @@
-from igm.conf import igm_project, cpy
+from igm.conf import igm_project, cpy, cpip
 
 
 def info():
@@ -15,5 +15,6 @@ igm_project(
     scripts={
         None: cpy('main.py'),
         'info': info,
+        'install': cpip('install', 'requirements.txt'),
     }
 )

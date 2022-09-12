@@ -11,6 +11,7 @@ igm run info
 You can run the regression and see its visual performance by the following command
 
 ```shell
+igm run install  # install the pip requirements
 igm run
 ```
 
