@@ -16,7 +16,7 @@ def inquire_func():
         float_allowed=True,
         default=_LAST_K,
     ).execute())
-    b = float(env.K or inquirer.number(
+    b = float(env.B or inquirer.number(
         message="What's is the b value:",
         float_allowed=True,
         default=_LAST_B,

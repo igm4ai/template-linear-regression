@@ -6,11 +6,7 @@ from torch import nn
 class LinearRegression(nn.Module):
     def __init__(self):
         nn.Module.__init__(self)
-{% if sys.cuda %}
-        self.linear = nn.Linear(1, 1).cuda()
-{% else %}
         self.linear = nn.Linear(1, 1)
-{% endif %}
 
     def forward(self, x_):
         return self.linear(x_)
@@ -24,7 +20,11 @@ if __name__ == "__main__":
     x, y = x.cuda(), y.cuda()
 {% endif %}
 
+{% if sys.cuda %}
+    model = LinearRegression().cuda()
+{% else %}
     model = LinearRegression()
+{% endif %}
     criterion = nn.MSELoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
 
